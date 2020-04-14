@@ -6,7 +6,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
@@ -17,4 +16,3 @@ hs_err_pid*
 android-studio-plugin.iml
 .gitignore
 out
-android-studio-plugin.zip
