@@ -22,8 +22,6 @@ public class Crowdin {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Crowdin.class);
 
-    public static final String CROWDIN_BASE_URL = "base-url";
-
     public static final String CROWDIN_PROJECT_IDENTIFIER = "project-identifier";
 
     public static final String CROWDIN_PROJECT_KEY = "project-key";
@@ -63,8 +61,7 @@ public class Crowdin {
         CrowdinApiClient crowdinApiClient = new Crwdn();
         crowdinApiParametersBuilder.json()
                 .headers(HttpHeaders.USER_AGENT, USER_AGENT_ANDROID_STUDIO_PLUGIN)
-                .files(source.getCanonicalPath())
-                .exportPatterns(source.getName(), "/values-%android_code%/%original_file_name%");
+                .files(source.getCanonicalPath());
         String createdBranch = this.createBranch(branch);
         if (createdBranch != null) {
             crowdinApiParametersBuilder.branch(createdBranch);

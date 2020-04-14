@@ -15,9 +15,6 @@ import java.util.List;
  */
 @SuppressWarnings("ALL")
 public class UploadAction extends AnAction {
-    public UploadAction() {
-        super("UploadAction");
-    }
 
     public static final String PROPERTY_SOURCES = "sources";
 
