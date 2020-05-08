@@ -9,16 +9,20 @@ import com.crowdin.utils.Utils;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.sun.jersey.api.client.ClientResponse;
 import org.apache.http.HttpHeaders;
+import org.apache.http.util.TextUtils;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.rmi.CORBA.Util;
 import java.io.File;
 
 /**
  * Created by ihor on 1/24/17.
  */
 public class Crowdin {
+
+//    private final static String DEF_EXPORT_PATTERN = "/values-%two_letters_code%/%original_file_name%";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Crowdin.class);
 
@@ -27,6 +31,8 @@ public class Crowdin {
     public static final String CROWDIN_PROJECT_KEY = "project-key";
 
     public static final String CROWDIN_DISABLE_BRANCHES = "disable-branches";
+
+//    public static final String EXPORT_PATTERN = "export-pattern";
 
     public static final String USER_AGENT_ANDROID_STUDIO_PLUGIN = "android-studio-plugin";
 
@@ -58,9 +64,11 @@ public class Crowdin {
         ClientResponse clientResponse = null;
         Credentials credentials = new Credentials(baseUrl, projectIdentifier, projectKey, null);
         CrowdinApiParametersBuilder crowdinApiParametersBuilder = new CrowdinApiParametersBuilder();
+//        String exportPatter = getExportPattern();
         CrowdinApiClient crowdinApiClient = new Crwdn();
         crowdinApiParametersBuilder.json()
                 .headers(HttpHeaders.USER_AGENT, USER_AGENT_ANDROID_STUDIO_PLUGIN)
+//                .exportPatterns(source.getName(), exportPatter)
                 .files(source.getCanonicalPath());
         String createdBranch = this.createBranch(branch);
         if (createdBranch != null) {
@@ -90,6 +98,14 @@ public class Crowdin {
         return clientResponse;
     }
 
+//    private String getExportPattern() {
+//        String exportPattern = Utils.getPropertyValue(EXPORT_PATTERN, true);
+//        if (TextUtils.isEmpty(exportPattern)) {
+//            exportPattern = DEF_EXPORT_PATTERN;
+//        }
+//        return exportPattern;
+//    }
+
     public ClientResponse exportTranslations(String branch) {
         ClientResponse clientResponse = null;
         Credentials credentials = new Credentials(baseUrl, projectIdentifier, projectKey, null);
@@ -102,7 +118,7 @@ public class Crowdin {
         }
         try {
             clientResponse = crowdinApiClient.exportTranslations(credentials, crowdinApiParametersBuilder);
-            //LOGGER.info("Crowdin: export translations " + clientResponse.getStatus() + " " + clientResponse.getStatusInfo());
+            LOGGER.info("Crowdin: export translations " + clientResponse.getStatus() + " " + clientResponse.getStatusInfo());
             System.out.println("Crowdin: export translations " + clientResponse.getStatus() + " " + clientResponse.getStatusInfo());
             System.out.println(clientResponse.getEntity(String.class));
         } catch (Exception e) {

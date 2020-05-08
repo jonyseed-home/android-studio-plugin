@@ -32,6 +32,9 @@ To download translations from Crowdin, choose in menu: `Tools > Crowdin > Downlo
 * To download translations use menu `Tools > Crowdin > Download`. Translations will be exported to the resource folder (\*\*/resources/values-uk/strings.xml, \*\*/resources/values-fr/strings.xml, ...)
 
 ### Change log
+**Version 0.5.10.2**
+- Updated crowding-sdk
+
 **Version 0.5.10.1**
 + Remove auto-upload parameter
 + Remove default export pattern   

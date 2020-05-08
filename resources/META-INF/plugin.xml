@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.crowdin.crowdin-idea</id>
   <name>Crowdin</name>
-  <version>0.5.10.1</version>
+  <version>0.5.10.2</version>
   <vendor email="ihor.popyk@crowdin.com" url="http://www.crowdin.com">Crowdin</vendor>
   <description><![CDATA[
       <p>
@@ -42,7 +42,7 @@
 
   <change-notes><![CDATA[
       <ul>
-        <li>Fix bug with disabling auto-upload</li>
+        <li>updated url for export translations</li>
       </ul>
     ]]>
   </change-notes>
